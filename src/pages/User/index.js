@@ -1,21 +1,35 @@
-import React from 'react'
-import * as Ons from 'react-onsenui'
-import 'onsenui/css/onsenui.css'
-import 'onsenui/css/onsen-css-components.css'
+import React from "react";
+import { Button, Page } from "react-onsenui";
+import "onsenui/css/onsenui.css";
+import "onsenui/css/onsen-css-components.css";
+import Menu from "../../components/Menu";
 
-const User=(props)=>{
-   const {user}=props.location.state
+const ThirdPage = ({ data, popPage }) => {
+  const user = data;
   return (
-      
-         <Ons.Page style={{textAlign:"center"}} >
-             <h1 style={{textAlign:"center"}}>  نمایش اطلاعات فرد</h1>
-              <h2>{user.first_name}{user.last_name}</h2>
-              <h3>{user.email}</h3>
-              <img src={user.avatar}/>
-          </Ons.Page>
+    <Page
+      renderToolbar={() => (
+        <Menu title="نمایش اطلاعات فرد" onBackButton={popPage} />
+      )}
+    >
+      <div
+        style={{
+          textAlign: "center",
+          margin: 10
+        }}
+      >
+        <h2>
+          {user.first_name}
+          {user.last_name}
+        </h2>
+        <h3>{user.email}</h3>
+        <img src={user.avatar} />
+        <Button className="back-btn" onClick={popPage}>
+          بازگشت
+        </Button>
+      </div>
+    </Page>
+  );
+};
 
-    ) 
-}
-
-
-export default User
+export default ThirdPage;
