@@ -1,17 +1,17 @@
-import React from "react";
-import "./style.scss";
-import { Button, Page, LazyList, ListItem } from "react-onsenui";
-import { useFetch } from "../../hooks/useFetch";
-import Menu from "../../components/Menu";
-import ThirdPage from "../User/index";
+import React from 'react'
+import './style.scss'
+import { Button, Page, LazyList, ListItem } from 'react-onsenui'
+import { useFetch } from '../../hooks/useFetch'
+import Menu from '../../components/Menu'
+import ThirdPage from '../User/index'
 
 const SecondPage = ({ pushPage, popPage }) => {
-  const [data] = useFetch("https://reqres.in/api/users?page=1");
+  const [data] = useFetch('https://reqres.in/api/users?page=1')
   return (
     <Page
       renderToolbar={() => <Menu title="لیست افراد " onBackButton={popPage} />}
     >
-      <div style={{ textAlign: "center" }}>
+      <div style={{ textAlign: 'center' }}>
         <LazyList
           modifier="inset"
           length={data.length}
@@ -29,8 +29,11 @@ const SecondPage = ({ pushPage, popPage }) => {
       <Button className="back-btn" onClick={popPage}>
         برگشت به صفحه اصلی
       </Button>
+      <Button className="back-btn" onClick={() => pushPage(ThirdPage, 1)}>
+        بعدی
+      </Button>
     </Page>
-  );
-};
+  )
+}
 
-export default SecondPage;
+export default SecondPage

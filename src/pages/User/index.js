@@ -1,11 +1,10 @@
-import React from "react";
-import { Button, Page } from "react-onsenui";
-import "onsenui/css/onsenui.css";
-import "onsenui/css/onsen-css-components.css";
-import Menu from "../../components/Menu";
+import React from 'react'
+import { Button, Page } from 'react-onsenui'
+
+import Menu from '../../components/Menu'
 
 const ThirdPage = ({ data, popPage }) => {
-  const user = data;
+  const user = data
   return (
     <Page
       renderToolbar={() => (
@@ -14,7 +13,7 @@ const ThirdPage = ({ data, popPage }) => {
     >
       <div
         style={{
-          textAlign: "center",
+          textAlign: 'center',
           margin: 10
         }}
       >
@@ -29,7 +28,7 @@ const ThirdPage = ({ data, popPage }) => {
         </Button>
       </div>
     </Page>
-  );
-};
+  )
+}
 
-export default ThirdPage;
+export default ThirdPage
