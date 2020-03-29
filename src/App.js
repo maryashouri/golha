@@ -1,15 +1,20 @@
-import React, { Component } from 'react'
+import React, { Component, useState, useEffect } from 'react'
 import './styles/index.scss'
 import 'onsenui/css/onsenui.css'
 import 'onsenui/css/onsen-css-components.css'
 import {
   Page,
   Toolbar,
-  BackButton,
   RouterNavigator,
-  RouterUtil
+  RouterUtil,
+  Splitter,
+  SplitterSide,
+  SplitterContent,
+  List,
+  ListItem,
+  ToolbarButton,
+  Icon
 } from 'react-onsenui'
-
 import MainPage from './pages/Home/index'
 
 class App extends Component {
@@ -24,8 +29,7 @@ class App extends Component {
         }
       }
     ])
-
-    this.state = { routeConfig }
+    this.state = { routeConfig, isOpen: false }
   }
 
   componentDidMount() {
@@ -33,7 +37,6 @@ class App extends Component {
       'popstate',
       () => {
         this.popPage()
-        this.renderPage(window.location.href)
       },
       false
     )
@@ -41,7 +44,6 @@ class App extends Component {
   pushPage(page, data) {
     const route = {
       component: page,
-
       props: {
         data,
         popPage: () => this.popPage(),
@@ -50,7 +52,6 @@ class App extends Component {
         }
       }
     }
-
     window.history.pushState(
       { name: 'browserBack' },
       'on browser back click',
@@ -62,13 +63,11 @@ class App extends Component {
       routeConfig,
       route
     })
-
     this.setState({ routeConfig })
   }
 
   popPage(options = {}) {
     let routeConfig = this.state.routeConfig
-
     routeConfig = RouterUtil.pop({
       routeConfig,
       options: {
@@ -95,29 +94,65 @@ class App extends Component {
     return <route.component {...props} />
   }
 
-  renderToolbar() {
+  hide = () => {
+    this.setState({ isOpen: false })
+  }
+
+  show = () => {
+    this.setState({ isOpen: true })
+  }
+  renderToolbar = () => {
     return (
       <Toolbar>
-        <div className="left">
-          <BackButton />
+        <div className="center">اپلیکیشن گل ها</div>
+        <div className="right">
+          <ToolbarButton onClick={this.show}>
+            <Icon icon="ion-navicon, material:md-menu" />
+          </ToolbarButton>
         </div>
-        <div className="center"> Navigator</div>
       </Toolbar>
     )
   }
-
   render() {
     return (
-      <Page renderToolbar={this.renderToolbar}>
-        <RouterNavigator
+      <Splitter>
+        <SplitterSide
+          style={{
+            boxShadow:
+              '0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)'
+          }}
+          side="right"
+          width={200}
+          collapse={true}
           swipeable={true}
-          swipePop={options => this.popPage(options)}
-          routeConfig={this.state.routeConfig}
-          renderPage={this.renderPage}
-          onPostPush={() => this.onPostPush()}
-          onPostPop={() => this.onPostPop()}
-        />
-      </Page>
+          isOpen={this.state.isOpen}
+          onClose={this.hide}
+          onOpen={this.show}
+        >
+          <Page>
+            <List
+              dataSource={['پروفایل', 'افراد', 'تنظیمات']}
+              renderRow={title => (
+                <ListItem key={title} onClick={this.hide} tappable>
+                  {title}
+                </ListItem>
+              )}
+            />
+          </Page>
+        </SplitterSide>
+        <SplitterContent>
+          <Page renderToolbar={this.renderToolbar}>
+            <RouterNavigator
+              swipeable={true}
+              swipePop={options => this.popPage(options)}
+              routeConfig={this.state.routeConfig}
+              renderPage={this.renderPage}
+              onPostPush={() => this.onPostPush()}
+              onPostPop={() => this.onPostPop()}
+            />
+          </Page>
+        </SplitterContent>
+      </Splitter>
     )
   }
 }

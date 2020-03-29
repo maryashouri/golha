@@ -1,12 +1,12 @@
 import React from 'react'
 import { Button, Page } from 'react-onsenui'
-
 import SecondPage from '../Users/index'
 import Menu from '../../components/Menu'
+import './style.scss'
 
 const MainPage = ({ pushPage }) => {
   return (
-    <Page renderToolbar={() => <Menu title="صفحه اصلی" />}>
+    <Page>
       <div
         style={{
           textAlign: 'center',

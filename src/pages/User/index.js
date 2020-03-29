@@ -6,11 +6,7 @@ import Menu from '../../components/Menu'
 const ThirdPage = ({ data, popPage }) => {
   const user = data
   return (
-    <Page
-      renderToolbar={() => (
-        <Menu title="نمایش اطلاعات فرد" onBackButton={popPage} />
-      )}
-    >
+    <Page>
       <div
         style={{
           textAlign: 'center',

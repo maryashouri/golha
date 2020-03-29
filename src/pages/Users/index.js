@@ -27,9 +27,7 @@ const SecondPage = ({ pushPage, popPage }) => {
   ]
 
   return (
-    <Page
-      renderToolbar={() => <Menu title="لیست افراد " onBackButton={popPage} />}
-    >
+    <Page>
       <div style={{ textAlign: 'center' }}>
         <LazyList
           modifier="inset"
@@ -47,9 +45,6 @@ const SecondPage = ({ pushPage, popPage }) => {
       </div>
       <Button className="back-btn" onClick={popPage}>
         برگشت به صفحه اصلی
-      </Button>
-      <Button className="back-btn" onClick={() => pushPage(ThirdPage, 1)}>
-        بعدی
       </Button>
     </Page>
   )
