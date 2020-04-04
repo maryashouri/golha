@@ -16,7 +16,7 @@ const ThirdPage = ({ data, popPage }) => {
         </h2>
         <h3>{user.email}</h3>
         <div className="img-container">
-          <img src={user.avatar} />
+          <img src={user.avatar}  alt="golha"/>
         </div>
         <Button className="back-btn" onClick={popPage}>
           بازگشت

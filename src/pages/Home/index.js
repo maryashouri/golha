@@ -5,7 +5,7 @@ import './style.scss'
 
 const MainPage = ({ pushPage }) => {
   const initialValue = ['#F1948A', '#D7BDE2', '#85C1E9', '#73C6B6', '#020ca1']
-  const [items, setItems] = useState(initialValue)
+  const [items] = useState(initialValue)
   const [index, setIndex] = useState(0)
   const handleChange = e => {
     setIndex(e.activeIndex)
