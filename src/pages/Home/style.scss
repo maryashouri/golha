@@ -2,3 +2,19 @@
 
     margin-bottom: 30px;
 }
+.slider
+{
+    margin: 0 auto;
+    display: flex;
+    overflow-x: scroll;
+    flex-wrap: nowrap;
+    width: 300px;
+  
+}
+.slider-box{
+
+    flex: 1 0 100px;
+    height: 100px;
+    display: inline-block;
+
+}
