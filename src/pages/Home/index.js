@@ -2,6 +2,7 @@ import React from 'react'
 import { Button, Page } from 'react-onsenui'
 import SecondPage from '../Users/index'
 import './style.scss'
+import Detail from '../Detail'
 
 const MainPage = ({ pushPage }) => {
   const colorArray = [
@@ -33,6 +34,7 @@ const MainPage = ({ pushPage }) => {
         {colorArray.map((value, index) => {
           return (
             <div
+              onClick={() => pushPage(Detail, colorArray[index])}
               key={index}
               className="slider-box"
               style={{ backgroundColor: value }}
