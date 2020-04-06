@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import {
-  BackButton,
+
   Toolbar,
   Splitter,
   SplitterSide,
@@ -11,9 +11,10 @@ import {
   ToolbarButton,
   Icon
 } from 'react-onsenui'
-import MainPage from '../pages/Home/index'
 
-const Menu = ({ title, onBackButton = null }) => {
+
+const Menu = (props) => {
+  console.log(props)
   const [isOpen, setIsOpen] = useState(false)
 
   const onOpen = () => {
@@ -26,7 +27,7 @@ const Menu = ({ title, onBackButton = null }) => {
   const renderToolbar = () => {
     return (
       <Toolbar>
-        <div className="right">{title}</div>
+        <div className="right"></div>
         <div className="left">
           <ToolbarButton onClick={onOpen}>
             <Icon icon="ion-navicon, material:md-menu" />
@@ -41,7 +42,7 @@ const Menu = ({ title, onBackButton = null }) => {
         style={{
           boxShadow: '0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)'
         }}
-        side="left"
+        side="right"
         width={200}
         collapse={true}
         swipeable={true}
@@ -51,7 +52,7 @@ const Menu = ({ title, onBackButton = null }) => {
       >
         <Page>
           <List
-            dataSource={['Profile', 'Followers', 'Settings']}
+            dataSource={['پروفایل', 'افراد', 'تنظیمات']}
             renderRow={title => (
               <ListItem key={title} onClick={onClose} tappable>
                 {title}
@@ -61,7 +62,7 @@ const Menu = ({ title, onBackButton = null }) => {
         </Page>
       </SplitterSide>
       <SplitterContent>
-        <Page renderToolbar={renderToolbar}></Page>
+        <Page renderToolbar={renderToolbar}>{props.children}</Page>
       </SplitterContent>
     </Splitter>
   )
