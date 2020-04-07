@@ -5,10 +5,15 @@ import 'onsenui/css/onsen-css-components.css'
 import {
   RouterNavigator,
   RouterUtil,
-
+  Page,
+  Toolbar,
+  Splitter,
+  SplitterContent,
+  ToolbarButton,
+  Icon
 } from 'react-onsenui'
-import MainPage from './pages/Home/index'
 import Menu from './components/Menu'
+import MainPage from './pages/Home/index'
 
 class App extends Component {
   constructor(props) {
@@ -22,7 +27,7 @@ class App extends Component {
         }
       }
     ])
-    this.state = { routeConfig }
+    this.state = { routeConfig, open: false }
   }
 
   componentDidMount() {
@@ -86,18 +91,39 @@ class App extends Component {
     const props = route.props || {}
     return <route.component {...props} />
   }
+  show = () => {
+    this.setState({ open: true })
+  }
+
+  renderToolbar = () => {
+    return (
+      <Toolbar>
+        <div className="right">اپلیکیشن گل ها</div>
+        <div className="left">
+          <ToolbarButton onClick={this.show}>
+            <Icon icon="ion-navicon, material:md-menu" />
+          </ToolbarButton>
+        </div>
+      </Toolbar>
+    )
+  }
   render() {
     return (
-      <Menu>
-         <RouterNavigator
-        swipeable={true}
-        swipePop={options => this.popPage(options)}
-        routeConfig={this.state.routeConfig}
-        renderPage={this.renderPage}
-        onPostPush={() => this.onPostPush()}
-        onPostPop={() => this.onPostPop()}
-      />
-      </Menu>
+      <Splitter>
+        <Menu />
+        <SplitterContent>
+          <Page renderToolbar={this.renderToolbar}>
+            <RouterNavigator
+              swipeable={true}
+              swipePop={options => this.popPage(options)}
+              routeConfig={this.state.routeConfig}
+              renderPage={this.renderPage}
+              onPostPush={() => this.onPostPush()}
+              onPostPop={() => this.onPostPop()}
+            />
+          </Page>
+        </SplitterContent>
+      </Splitter>
     )
   }
 }

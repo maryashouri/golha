@@ -10,7 +10,6 @@ const Detail = ({ data, popPage }) => {
         }}
       >
         <h2>{data}</h2>
-
         <Button className="back-btn" onClick={popPage}>
           بازگشت
         </Button>

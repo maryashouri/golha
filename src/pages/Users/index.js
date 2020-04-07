@@ -8,7 +8,6 @@ const SecondPage = ({ pushPage, popPage }) => {
   const [data, loading] = useFetch('https://reqres.in/api/users')
   return (
     <Page>
-      <ProgressBar indeterminate></ProgressBar>
       {loading ? (
         <ProgressBar indeterminate></ProgressBar>
       ) : (
