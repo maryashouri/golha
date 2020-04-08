@@ -10,9 +10,10 @@ import {
   Splitter,
   SplitterContent,
   ToolbarButton,
-  Icon
+  Icon,
+  SplitterSide
 } from 'react-onsenui'
-import Menu from './components/Menu'
+import Menu from './components/menu/index'
 import MainPage from './pages/Home/index'
 
 class App extends Component {
@@ -27,7 +28,7 @@ class App extends Component {
         }
       }
     ])
-    this.state = { routeConfig, open: false }
+    this.state = { routeConfig, isOpen: false }
   }
 
   componentDidMount() {
@@ -37,6 +38,11 @@ class App extends Component {
         this.popPage()
       },
       false
+    )
+    window.history.pushState(
+      { name: 'browserBack' },
+      'on browser back click',
+      window.location.href
     )
   }
   pushPage(page, data) {
@@ -50,11 +56,6 @@ class App extends Component {
         }
       }
     }
-    window.history.pushState(
-      { name: 'browserBack' },
-      'on browser back click',
-      window.location.href
-    )
 
     let routeConfig = this.state.routeConfig
     routeConfig = RouterUtil.push({
@@ -92,7 +93,11 @@ class App extends Component {
     return <route.component {...props} />
   }
   show = () => {
-    this.setState({ open: true })
+    this.setState({ isOpen: true })
+  }
+
+  hide = () => {
+    this.setState({ isOpen: false })
   }
 
   renderToolbar = () => {
@@ -110,7 +115,21 @@ class App extends Component {
   render() {
     return (
       <Splitter>
-        <Menu />
+        <SplitterSide
+          style={{
+            boxShadow:
+              '0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)'
+          }}
+          side="right"
+          width={200}
+          collapse={true}
+          swipeable={true}
+          isOpen={this.state.isOpen}
+          onClose={this.hide}
+          onOpen={this.show}
+        >
+          <Menu />
+        </SplitterSide>
         <SplitterContent>
           <Page renderToolbar={this.renderToolbar}>
             <RouterNavigator
