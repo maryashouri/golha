@@ -19,6 +19,7 @@ module.exports = {
   plugins: ['react'],
   rules: {
     indent: ['warn', 2],
+
     semi: ['warn', 'never'],
     quotes: ['warn', 'single'],
     'max-len': ['warn', { code: 90 }],
