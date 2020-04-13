@@ -1,5 +1,6 @@
 import React from 'react'
 import { Button, Page } from 'react-onsenui'
+import Player from '../../components/player/index'
 
 const Detail = ({ data, popPage }) => {
   return (
@@ -10,6 +11,7 @@ const Detail = ({ data, popPage }) => {
         }}
       >
         <h2>{data}</h2>
+        <Player></Player>
         <Button className="back-btn" onClick={popPage}>
           بازگشت
         </Button>
