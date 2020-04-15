@@ -1,0 +1,12 @@
+
+    .list-item
+    {
+
+     display: flex;
+     justify-content: space-between;
+    &__singer
+    {
+        color:blue;
+        cursor: pointer;
+    }
+}
