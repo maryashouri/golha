@@ -1,9 +1,9 @@
 import React from 'react'
 import { LazyList, ListItem } from 'react-onsenui'
-import { usePlayer } from '../../hooks/usePlayer'
+
 import './style.scss'
 
-const PlayList = ({ itemRef }) => {
+const PlayList = ({ item }) => {
   const list = [
     {
       id: 1,
@@ -20,7 +20,7 @@ const PlayList = ({ itemRef }) => {
     { id: 3, persianTitle: 'گوگوش', title: 'gogoosh', trackName: 'دو پنجره' }
   ]
 
-  const { setSelectedTrack, selectedTrack } = usePlayer(itemRef)
+  // const { setSelectedTrack, selectedTrack } = usePlayer(itemRef)
 
   return (
     <div style={{ textAlign: 'center' }}>
@@ -28,10 +28,7 @@ const PlayList = ({ itemRef }) => {
         modifier="inset"
         length={list.length}
         renderRow={index => (
-          <ListItem
-            onClick={() => setSelectedTrack(list[index].title)}
-            key={index}
-          >
+          <ListItem onClick={() => item(list[index].title)} key={index}>
             <div className="list-item">
               <div> {list[index].trackName}</div>
               <div className="list-item__singer">

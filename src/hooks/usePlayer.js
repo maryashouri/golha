@@ -51,11 +51,8 @@ export function usePlayer(ref) {
       ref.current.src = track
       ref.current.play()
       setPlayer('playing')
-      console.log(player)
       setFeatures({ duration: ref.current.duration })
     }
-    setPlayer('playing')
-    setFeatures({ duration: ref.current.duration })
   }, [selectedTrack])
   useEffect(() => {
     if (player === 'paused') {

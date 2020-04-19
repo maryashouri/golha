@@ -4,7 +4,7 @@ import { usePlayer } from '../../hooks/usePlayer'
 
 const Player = () => {
   let ref = useRef()
-  const { player, features, setPlayer } = usePlayer(ref)
+  const { player, features, setPlayer, setSelectedTrack } = usePlayer(ref)
 
   function getTime(time) {
     if (!isNaN(time)) {
@@ -20,7 +20,7 @@ const Player = () => {
   return (
     <>
       <h1>My Little Player</h1>
-      <PlayList itemRef={ref} />
+      <PlayList item={setSelectedTrack} />
       <div>
         {player === 'paused' && (
           <button onClick={() => setPlayer('playing')}>Play</button>
