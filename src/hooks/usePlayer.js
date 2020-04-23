@@ -31,7 +31,7 @@ export function usePlayer(ref) {
     const homayoon =
       'https://dls.music-fa.com/tagdl/downloads/Homayoun%20Shajarian%20-%20Abr%20Mibarad%20(128).mp3'
     const gogoosh =
-      'http://dl.musicdam.ir/Downloads/mp3/Googoosh%20-%20Do%20Panjereh%20.mp3'
+      'http://dl.vblogit.ir/googoosh/Googoosh%20-%202%20Panjereh/06%20-%202%20Panjereh.mp3'
     let track
 
     switch (selectedTrack) {
@@ -49,9 +49,10 @@ export function usePlayer(ref) {
 
     if (track) {
       ref.current.src = track
-      ref.current.play()
-      setPlayer('playing')
-      setFeatures({ duration: ref.current.duration })
+      setTimeout(() => {
+        setPlayer('playing')
+        setFeatures({ duration: ref.current.duration })
+      })
     }
   }, [selectedTrack])
   useEffect(() => {
@@ -61,7 +62,8 @@ export function usePlayer(ref) {
       ref.current.pause()
       ref.current.currentTime = 0
       setSelectedTrack({ selectedTrack: null })
-    } else if (player === 'playing' && prevPlayer === 'paused') {
+      // && prevPlayer === 'paused'
+    } else if (player === 'playing') {
       ref.current.play()
     }
   }, [player])
