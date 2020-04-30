@@ -34,7 +34,7 @@ const Player = () => {
           ''
         )}
       </div>
-      {(player === 'playing' || player === 'paused') && duration ? (
+      {player === 'playing' || player === 'paused' ? (
         <div>
           {currentTime} / {duration}
         </div>
